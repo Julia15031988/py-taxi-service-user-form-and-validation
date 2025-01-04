@@ -13,7 +13,8 @@ class DriverLicenseUpdateForm(forms.ModelForm):
         license_number = self.cleaned_data.get("license_number")
 
         if len(license_number) != 8:
-            raise forms.ValidationError("license_number must have 8 characters")
+            raise forms.ValidationError(
+                "license_number must have 8 characters")
 
         if not re.match(r"^[A-Z]{3}\d{5}$", license_number):
             raise forms.ValidationError(
@@ -35,7 +36,8 @@ class DriverCreationForm(UserCreationForm):
         license_number = self.cleaned_data.get("license_number")
 
         if len(license_number) != 8:
-            raise forms.ValidationError("license_number must have 8 characters")
+            raise forms.ValidationError(
+                "license_number must have 8 characters")
 
         if not re.match(r"^[A-Z]{3}\d{5}$", license_number):
             raise forms.ValidationError(

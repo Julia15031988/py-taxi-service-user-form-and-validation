@@ -145,5 +145,7 @@ class DriverUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("taxi:driver-list")
 
     def form_valid(self, form):
-        messages.success(self.request, "Driver information updated successfully.")
+        messages.success(
+            self.request, "Driver information "
+                          "updated successfully.")
         return super().form_valid(form)
