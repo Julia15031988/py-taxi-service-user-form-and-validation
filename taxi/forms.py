@@ -10,16 +10,16 @@ class DriverLicenseUpdateForm(forms.ModelForm):
         fields = ("license_number",)
 
     def clean_license_number(self):
-        license_number = self.cleaned_data.get('license_number')
+        license_number = self.cleaned_data.get("license_number")
 
         if len(license_number) != 8:
-            raise forms.ValidationError(
-                "license_number must have 8 characters")
+            raise forms.ValidationError("license_number must have 8 characters")
 
         if not re.match(r"^[A-Z]{3}\d{5}$", license_number):
             raise forms.ValidationError(
                 "license_number must begin with 3 "
-                "Uppercase letters and then 5 digits")
+                "Uppercase letters and then 5 digits"
+            )
 
         return license_number
 
@@ -32,16 +32,16 @@ class DriverCreationForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields
 
     def clean_license_number(self):
-        license_number = self.cleaned_data.get('license_number')
+        license_number = self.cleaned_data.get("license_number")
 
         if len(license_number) != 8:
-            raise forms.ValidationError(
-                "license_number must have 8 characters")
+            raise forms.ValidationError("license_number must have 8 characters")
 
         if not re.match(r"^[A-Z]{3}\d{5}$", license_number):
             raise forms.ValidationError(
                 "license_number must begin with 3 "
-                "Uppercase letters and then 5 digits")
+                "Uppercase letters and then 5 digits"
+            )
 
         return license_number
 
@@ -50,7 +50,7 @@ class CarCreateForm(forms.ModelForm):
     drivers = forms.ModelMultipleChoiceField(
         queryset=Driver.objects.all(),
         widget=forms.CheckboxSelectMultiple,
-        required=False
+        required=False,
     )
 
     class Meta:
